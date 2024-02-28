@@ -4,7 +4,7 @@ import os
 DATA_DIR = utilities.get_data_directory_path()
 
 
-def extraction_cv(filepath):
+def extraction_data(filepath):
     """
         This function is used to extract from the csv or word document.
     """
@@ -17,9 +17,10 @@ def extraction_cv(filepath):
 
 nameofcv = input("Enter name of CV (PDF at the end): ")
 
-filepath = os.path.join(DATA_DIR, "cvs", nameofcv)
+filepathforcv = os.path.join(DATA_DIR, "cvs", nameofcv)
 
-print(filepath)
-extracted_text = extraction_cv(filepath)
+filepathforjobrequirements = os.path.join(DATA_DIR, "otherdocs", "data.docx")
 
-print("here : ", extracted_text)
+extracted_cv = extraction_data(filepathforcv)
+
+extracted_jobrequirements = extraction_data(filepathforjobrequirements)
