@@ -1,1 +1,0 @@
-from extraction import extracted_jobrequirements, extracted_cv
