@@ -6,6 +6,12 @@ import re
 
 # Class for transformation(removing personal information) of both cv and job requirements.
 class Transformation:
+    """
+        This class has methods that masked personal information of the cv and job description.
+        The masking_on_data method using regex and spacy to find and masked personal information of data.
+        It returns the masked data, the number of masked data and the different data that was masked.
+    """
+
     def __init__(self, extraction_data):
         self.extraction_data = extraction_data
 
@@ -57,5 +63,3 @@ maskeddata_cv, countcv, maskeddatacv = transformcvobject.masking_on_data()
 transformjobdesobject = Transformation(extracted_jobrequirements)
 
 maskeddata_jobsdes, count_jobsdes, maskeddatajobsdex = transformjobdesobject.masking_on_data()
-
-print(maskeddata_jobsdes)
