@@ -4,6 +4,8 @@ import PyPDF2
 import re
 import spacy
 import subprocess
+import sqlite3
+
 
 # Download spaCy model if not already installed
 try:
@@ -87,3 +89,41 @@ def mask_personal_information_2(text):
         name_pattern, "*******", redacted_text)
 
     return redacted_text
+
+
+def find_emails(text):
+    # Regular expression pattern for matching email addresses
+    pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+
+    # Using re.findall() to find all email addresses in the text
+    emails = re.findall(pattern, text)
+
+    return emails
+
+
+def fetch_maskedcv_jobdes(email):
+    conn = sqlite3.connect('mydatabase.db')
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT maskedcv, maskedjobdes FROM CareerCraft WHERE useremail=?", (email,))
+
+    result = cursor.fetchone()
+
+    conn.close()
+
+    if result:
+        return result[0], result[1]
+    else:
+        return None, None
+
+
+def save_text_as_word(text, filename):
+    # Create a new Document
+    doc = docx.Document()
+
+    # Add the text to the document
+    doc.add_paragraph(text)
+
+    # Save the document
+    doc.save(filename)
