@@ -1,4 +1,4 @@
-from transform import maskeddata_cv, maskeddata_jobsdes
+from transform import maskeddata_cv, maskeddata_jobsdes, useremail
 import sqlite3
 
 conn = sqlite3.connect('mydatabase.db')
@@ -10,6 +10,7 @@ cursor.execute('''DROP TABLE IF EXISTS CareerCraft''')
 
 # Create the skilljob table with the specified columns
 cursor.execute('''CREATE TABLE CareerCraft (
+    useremail TEXT CHECK(LENGTH(useremail) <= 1000),
     maskedcv TEXT CHECK(LENGTH(maskedcv) <= 1000000000),
     maskedjobdes TEXT CHECK(LENGTH(maskedjobdes) <= 10000000000)
 )''')
@@ -17,12 +18,12 @@ cursor.execute('''CREATE TABLE CareerCraft (
 
 # Insert data into the table
 insert_data = [
-    (maskeddata_cv, maskeddata_jobsdes),
+    (useremail, maskeddata_cv, maskeddata_jobsdes),
     # Add more rows as needed
 ]
 
 cursor.executemany(
-    "INSERT INTO CareerCraft (maskedcv, maskedjobdes) VALUES (?, ?)", insert_data)
+    "INSERT INTO CareerCraft (useremail, maskedcv, maskedjobdes) VALUES (?, ?, ?)", insert_data)
 
 # Commit the changes
 conn.commit()

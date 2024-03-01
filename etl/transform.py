@@ -4,7 +4,12 @@ import spacy
 import re
 
 
+# getting all email of users before transforming it.
+all_email = utilities.find_emails(extracted_cv)
+
 # Class for transformation(removing personal information) of both cv and job requirements.
+
+
 class Transformation:
     """
         This class has methods that masked personal information of the cv and job description.
@@ -63,3 +68,5 @@ maskeddata_cv, countcv, maskeddatacv = transformcvobject.masking_on_data()
 transformjobdesobject = Transformation(extracted_jobrequirements)
 
 maskeddata_jobsdes, count_jobsdes, maskeddatajobsdex = transformjobdesobject.masking_on_data()
+
+useremail = all_email[0]
