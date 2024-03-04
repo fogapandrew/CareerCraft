@@ -25,6 +25,14 @@ jobs:
           conda env create -f environment.yml
           conda activate CareerCraft
 
+      - name: Generate requirements.txt
+        run: |
+          conda list --export | grep -v "^#" > requirements.txt
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
       - name: Run ETL script
         run: |
           python etl/load.py
