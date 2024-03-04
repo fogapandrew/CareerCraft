@@ -15,7 +15,7 @@ def extraction_data(filepath):
         return utilities.pdf_extractor(filepath)
 
 
-# nameofcv = input("Enter name of CV (PDF at the end): ")
+nameofcv = input("Enter name of CV (PDF at the end): ")
 
 filepathforcv = os.path.join(DATA_DIR, "cvs", "FogapCV.pdf")
 
