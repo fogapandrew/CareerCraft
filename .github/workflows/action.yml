@@ -18,10 +18,11 @@ jobs:
         with:
           python-version: 3.11.3
 
-      - name: Create Conda environment
+      - name: Initialize Conda
         run: |
+          conda init bash
+          eval "$(conda shell.bash hook)"
           conda env create -f environment.yml
-          echo "::add-path::$(conda info --base)/envs/CareerCraft/bin"
           conda activate CareerCraft
 
       - name: Run ETL script
