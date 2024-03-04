@@ -10,27 +10,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.11.3
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11.3
 
-    - name: Create Conda environment
-      run: |
-        conda env create -f environment.yml
-        conda activate myenv
+      - name: Create Conda environment
+        run: |
+          conda env create -f environment.yml
+          conda activate CareerCraft
 
-    - name: Run ETL script
-      run: |
-        python load.py
+      - name: Run ETL script
+        run: |
+          python load.py
 
-    - name: Commit and push updated data to repository
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "Update data"
-        git push
+      - name: Commit and push updated data to repository
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Update data"
+          git push
