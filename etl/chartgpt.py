@@ -1,11 +1,18 @@
 from transform import useremail
 import utilities
 import openai
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # take environment variables from .env
 
 
 masked_cv, masked_job = utilities.fetch_maskedcv_jobdes(useremail)
 
-openai.api_key = "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"
+
+API_KEY = os.getenv("API_KEY")
+
+openai.api_key = API_KEY
 
 # prompt engineering the openai with maskedcv and job description with questions.
 
@@ -24,7 +31,6 @@ Can you do the following :
 - update the cv to suit the job description and requirements.
 - provide detailed motivation letter for this job.
 - provide detailed cover letter for this job.
-
 '''
 
 input_messages = [
@@ -44,7 +50,6 @@ response = openai.ChatCompletion.create(
 response_dict = response
 
 # Access and print the content field
-
 responses = response_dict['choices'][0]['message']['content']
 
 print(responses)
