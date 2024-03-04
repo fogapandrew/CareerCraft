@@ -27,7 +27,7 @@ jobs:
 
       - name: Run ETL script
         run: |
-          python load.py
+          python etl/load.py
 
       - name: Check for changes
         run: |
