@@ -21,16 +21,22 @@ jobs:
       - name: Create Conda environment
         run: |
           conda env create -f environment.yml
+          echo "::add-path::$(conda info --base)/envs/CareerCraft/bin"
           conda activate CareerCraft
 
       - name: Run ETL script
         run: |
           python load.py
 
-      - name: Commit and push updated data to repository
+      - name: Check for changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "Update data"
-          git push
+          git status --porcelain
+          if [ -n "$(git status --porcelain)" ]; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add .
+            git commit -m "Update data"
+            git push
+          else
+            echo "No changes to commit"
+          fi
