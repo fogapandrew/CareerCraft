@@ -25,13 +25,13 @@ jobs:
           conda env create -f environment.yml
           conda activate CareerCraft
 
-      - name: Generate requirements.txt
+      - name: Install additional dependencies
         run: |
-          conda list --export | grep -v "^#" > requirements.txt
-
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
+          pip install python-docx==1.0.1
+          pip install pypdf2 == 2.11.1
+          pip install Document == 1.0
+          pip install PyMuPDF == 1.23.5
+          pip install docx == 0.2.4
 
       - name: Run ETL script
         run: |
