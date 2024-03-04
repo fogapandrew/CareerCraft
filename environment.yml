@@ -12,4 +12,7 @@ dependencies:
       - PyMuPDF == 1.23.5
       - pypdf2 == 2.11.1
       - PyYAML == 6.0.1
+      - docx == 0.2.4
+      - lxml == 4.9.3
+      - Pillow == 9.5.0
       - prefect
