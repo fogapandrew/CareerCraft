@@ -28,9 +28,10 @@ Here is the job description and requirements :
 {masked_job}
 
 Can you do the following :
+- check if the cv is inline with the job description. if it is not provide advice on skills user to have to have that job.
 - update the cv to suit the job description and requirements.
-- provide detailed motivation letter for this job.
-- provide detailed cover letter for this job.
+- provide detailed motivation letter for the job as specify in the job description above.
+- provide detailed cover letter for this job as specify in the job description above.
 '''
 
 input_messages = [
