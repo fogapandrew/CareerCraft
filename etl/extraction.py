@@ -19,7 +19,8 @@ nameofcv = input("Enter name of CV (PDF at the end): ")
 
 filepathforcv = os.path.join(DATA_DIR, "cvs", "FogapCV.pdf")
 
-filepathforjobrequirements = os.path.join(DATA_DIR, "otherdocs", "data.docx")
+filepathforjobrequirements = os.path.join(
+    DATA_DIR, "otherdocs", "data.docx")
 
 extracted_cv = extraction_data(filepathforcv)
 

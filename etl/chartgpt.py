@@ -3,6 +3,7 @@ import utilities
 import openai
 from dotenv import load_dotenv
 import os
+from transform import maskeddata_cv, maskeddata_jobsdes
 
 load_dotenv()  # take environment variables from .env
 
@@ -21,17 +22,21 @@ Below you will find two masked data; masked cv and masked job description and re
 
 Here is the masked cv :
 
-{masked_cv}
+{maskeddata_cv}
 
 Here is the job description and requirements :
 
-{masked_job}
+{maskeddata_jobsdes}
 
 Can you do the following :
-- check if the cv is inline with the job description. if it is not provide advice on skills user to have to have that job.
-- update the cv to suit the job description and requirements.
-- provide detailed motivation letter for the job as specify in the job description above.
-- provide detailed cover letter for this job as specify in the job description above.
+if there is a 70% match in skills of cv and job descriptions and requiremetns or match in education do this:
+    - provide details advices on areas to update on cv to suits the job description.
+    - provide detailed motivation letter for the job as specify in the masked job description above.
+    - provide detailed cover letter for this job also.
+    No yapping!
+if there is less than 50% in skills of cv and job descriptions and requiremetns do this:
+    - provide a detail carreer path that the use can take to do this particular jobs, provide resources and links for courses that can be taken.
+    No yapping!
 '''
 
 input_messages = [
